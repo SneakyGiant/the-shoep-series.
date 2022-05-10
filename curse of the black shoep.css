@@ -8,3 +8,26 @@
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
+#img{
+  width:30px;
+  height:30px;
+  float:right;
+
+}
+.shoep{
+  float:right;
+  width:25px;
+  height:25px;
+}
+.links{
+  position: absolute;
+  margin-left: 25%;
+  margin-top: 25%;
+}
+.rechts{
+
+}
+#includedContent {
+  height:100%;
+  position: absolute;
+}
