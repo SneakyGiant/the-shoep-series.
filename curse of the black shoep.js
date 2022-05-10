@@ -3,7 +3,6 @@ $(document).ready(function(){
 
   $("#img").mouseenter(function(){
     $(".shoep").show(1000);
-    alert("you found shoep");
     console.log("crap");
   });
 
