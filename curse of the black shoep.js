@@ -1,4 +1,8 @@
 $(document).ready(function(){
+
+  var Links = [];
+  var Rechts = [];  
+
   $(".shoep").hide();
 
   $("#img").mouseenter(function(){
@@ -10,8 +14,8 @@ $(document).ready(function(){
     $(".shoep").hide(1000);
     console.log("fuck");
   });
-
-alert("shoep is hidden");
-
-
+  $("#add").click(function(){
+    var Toevoegen = $("#txt").val();
+    $(".links").text(Toevoegen);
+  });
 });
