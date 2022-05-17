@@ -10,7 +10,8 @@ $(document).ready(function(){
 
     $(".links").empty();
     for(i = 0; i < Links.length; i++){
-      
-    }
+      $(".links").append('<div class="word" data-list="left" data-number="'+i+'">'+leftList[i]+'</div>');
+    };
+    
   });
 });
