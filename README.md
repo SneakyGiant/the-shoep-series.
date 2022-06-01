@@ -6,3 +6,4 @@ we are idiots, and we are proud of it;
 also krijg de tering;
 zeer schande;
 never gonna give u up;
+you can dance if you want to
