@@ -6,7 +6,7 @@ public class D2 {
         String chosenword = words[0];
         String correctletters = "";
         for(int x = 0; x<chosenword.length(); x++){
-            correctletters = correctletters + "_";
+            correctletters = correctletters + "_ ";
         }
         for(int y = 0; y<args[0].length(); y++){
         	if (args[0].charAt(y) == chosenword.charAt(y)){
