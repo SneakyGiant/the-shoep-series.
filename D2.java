@@ -2,8 +2,8 @@ public class D2 {
     public static void main(String[] args) {
         
     int n = (int)(Math.random() * 10);
-    String[] words = {}; //hier moeten stings komen
-        String chosenword = words[n];
+    String[] words = {nanny}; //hier moeten stings komen
+        String chosenword = words[1];
         String correctletters = "";
             for(int x = 0; x<chosenword.length; x++){
                 correctletters = corectletters + "_"
@@ -13,5 +13,8 @@ public class D2 {
             }
         if (args[0] == chosenword){
             System.out.println("Correct guess");
+        }
+        else{
+            System.out.println(correctletters);
         }
 }
