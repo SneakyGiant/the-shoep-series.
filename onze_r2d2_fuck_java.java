@@ -6,11 +6,11 @@ public class MyClass {
 		int anders_werkt_deze_bullshit_niet = 0;
 		
 		if (anders_werkt_deze_bullshit_niet == 0) {
-	        int n = (int)(Math.random() * 2);        
-	        chosenword = words[n];
-	        for(int x = 0; x<chosenword.length(); x++){
-	            correctletters = correctletters + "_ ";
-	        }
+			int n = (int)(Math.random() * 2);        
+			chosenword = words[n];
+			for(int x = 0; x<chosenword.length(); x++){
+			    correctletters = correctletters + "_ ";
+			}
 		}
 		
 		if (chosenword.contains(args[0])) {
