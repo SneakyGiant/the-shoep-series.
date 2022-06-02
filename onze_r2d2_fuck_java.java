@@ -6,17 +6,20 @@ public class MyClass {
 		int anders_werkt_deze_bullshit_niet = 0;
 		
 		if (anders_werkt_deze_bullshit_niet == 0) {
-			int n = (int)(Math.random() * 2);        
-			chosenword = words[n];
-			for(int x = 0; x<chosenword.length(); x++){
-			    correctletters = correctletters + "_ ";
-			}
+	        int n = (int)(Math.random() * 2);        
+	        chosenword = words[n];
+	        for(int x = 0; x<chosenword.length(); x++){
+	            correctletters = correctletters + "_ ";
+	        }
 		}
 		
 		if (chosenword.contains(args[0])) {
-			 for(int y = 0; y<args[0].length(); y++){
+		 	for(int y = 0; y<args[0].length(); y++){
 		        	if (args[0].charAt(y) == chosenword.charAt(y)){
-		                correctletters.replace(correctletters.charAt(y), args[0].charAt(y));
+					String a = correctletters.substring(0, chosenword.indexOf(chosenword.charAt(y)));
+					String b = chosenword.charAt(y);
+					String c = correctletters.substring(chosenword.indexOf(chosenword.charAt(y))+1);
+					tekst = a + b + c;
 		            }
 		        }
 		}
