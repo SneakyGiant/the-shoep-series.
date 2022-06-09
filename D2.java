@@ -1,6 +1,5 @@
-
- import java.util.Scanner;
-public class D2 {
+import java.util.Scanner;
+public class test {
 
 	public static void main(String[] args) {
 		String chosenword = "";
@@ -11,8 +10,7 @@ public class D2 {
 		for (int y=0; y<chosenword.length(); y++) {
 			correctletters = correctletters + "_ ";
 		}
-		function(chosenword, correctletters);
-		
+		function(chosenword, correctletters);		
 	}
 
 
@@ -27,8 +25,15 @@ static void function(String chosenword, String correctletters) {
 	}
 	else {
 		if(chosenword.contains(input)) {
-			for (int x=0; x<chosenword.length(); x++) {
-				correctletters.replace(correctletters.charAt(2*chosenword.indexOf(input)+1), input.charAt(0));
+			
+			
+			int i = chosenword.indexOf(input);
+			while(i <= chosenword.length()) {
+				String a = correctletters.substring(0, 2*chosenword.indexOf(input));
+				char b = input.charAt(0);
+				String c = correctletters.substring(2*chosenword.indexOf(input)+1);
+				correctletters = a + b + c;
+			     i++;
 			}
 			System.out.println(correctletters);
 			function(chosenword, correctletters);
