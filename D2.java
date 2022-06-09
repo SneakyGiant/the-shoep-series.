@@ -28,7 +28,7 @@ static void function(String chosenword, String correctletters) {
 	else {
 		if(chosenword.contains(input)) {
 			for (int x=0; x<chosenword.length(); x++) {
-				correctletters.replace(correctletters.charAt(chosenword.indexOf(input)), input.charAt(0));
+				correctletters.replace(correctletters.charAt(2*chosenword.indexOf(input)+1), input.charAt(0));
 			}
 			System.out.println(correctletters);
 			function(chosenword, correctletters);
