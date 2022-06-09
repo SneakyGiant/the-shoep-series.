@@ -1,6 +1,5 @@
 import java.util.Scanner;
-public class test {
-
+public class D2 {
 	public static void main(String[] args) {
 		String chosenword = "";
 		String[] words = {"nanny", "headphones"};
@@ -29,11 +28,11 @@ static void function(String chosenword, String correctletters) {
 			
 			int i = chosenword.indexOf(input);
 			while(i <= chosenword.length()) {
-				String a = correctletters.substring(0, 2*chosenword.indexOf(input));
+				String a = correctletters.substring(0, 2*i);
 				char b = input.charAt(0);
-				String c = correctletters.substring(2*chosenword.indexOf(input)+1);
+				String c = correctletters.substring(2*i+1);
 				correctletters = a + b + c;
-			     i++;
+			     i = chosenword.indexOf(input, i);
 			}
 			System.out.println(correctletters);
 			function(chosenword, correctletters);
