@@ -3,7 +3,10 @@ public class D2 {
 
 	public static void main(String[] args) {
 		String chosenword = "";
-		String[] words = {"nanny", "headphones", "background", "computer", "submarine"};
+		String[] words = {"nanny", "headphones", "background", "computer", "submarine", "coincide",
+				"cinema", "deep", "coffee", "ample", "coma", "trust", "vulcano", "layout",
+				"veteran", "lamp", "mosaic", "opera", "obese", "drink", "suggest", "nun",
+				"leak", "slippery", "dimension", "pavement", "lend", "mark", "slab", "stall"};
 		String correctletters = "";
 		int wrong = 0;
 		int n = (int) (Math.random() * 5);
