@@ -4,9 +4,10 @@ public class D2 {
 	public static void main(String[] args) {
 		String chosenword = "";
 		String[] words = {"nanny", "headphones", "background", "computer", "submarine", "coincide",
-				"cinema", "deep", "coffee", "ample", "coma", "trust", "vulcano", "layout",
-				"veteran", "lamp", "mosaic", "opera", "obese", "drink", "suggest", "nun",
-				"leak", "slippery", "dimension", "pavement", "lend", "mark", "slab", "stall"};
+				"cinema", "deep", "coffee", "ample", "coma", "trust", "vulcano",				
+				"leak", "slippery", "dimension", "pavement", "mark", "slab", "layout",
+				 "Pneumonoultramicroscopicsilicovolcanoconiosis", "stall", "nun",
+				 "veteran", "lamp", "mosaic", "opera", "obese", "drink", "suggest"};
 		String correctletters = "";
 		int wrong = 0;
 		int n = (int) (Math.random() * 29);
