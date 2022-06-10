@@ -43,13 +43,19 @@ static void function(String chosenword, String correctletters, int wrong) {
 				     i = chosenword.indexOf(input, i+1);
 				}
 				System.out.println(correctletters);
-				System.out.println(9-wrong + " wrong guesses left");
-				function(chosenword, correctletters, wrong);
+				if (correctletters.contains("_")) {
+					System.out.println(9-wrong+1 + " wrong guesses left");
+					function(chosenword, correctletters, wrong);
+				}
+				else {
+					System.out.println("correct guess");
+					inputread.close();
+				}
 			}
 			else {
 				wrong++;
 				System.out.println(correctletters);
-				System.out.println(9-wrong + " wrong guesses left");
+				System.out.println(9-wrong+1 + " wrong guesses left");
 				function(chosenword, correctletters, wrong);
 			}
 		}
