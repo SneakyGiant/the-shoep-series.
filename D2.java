@@ -23,31 +23,40 @@ static void function(String chosenword, String correctletters, int wrong) {
 	String input = inputread.nextLine();
 	
 	
-	if (input.equals(chosenword)) {
+	if (input.equals(chosenword) || !correctletters.contains("_")) {
 		System.out.println("correct guess");
 		inputread.close();
 	}
 	else if(wrong == 9){
 		System.out.println("you've lost");
+		inputread.close();
 	}
 	else {
-		if(chosenword.contains(input)) {
-			int i = chosenword.indexOf(input);
-			while(i <= chosenword.length() && i != -1) {
-				String a = correctletters.substring(0, 2*i);
-				char b = input.charAt(0);
-				String c = correctletters.substring(2*i+1);
-				correctletters = a + b + c;
-			     i = chosenword.indexOf(input, i+1);
+		if(input.length()==1) {
+			if(chosenword.contains(input)) {
+				int i = chosenword.indexOf(input);
+				while(i <= chosenword.length() && i != -1) {
+					String a = correctletters.substring(0, 2*i);
+					char b = input.charAt(0);
+					String c = correctletters.substring(2*i+1);
+					correctletters = a + b + c;
+				     i = chosenword.indexOf(input, i+1);
+				}
+				System.out.println(correctletters);
+				System.out.println(9-wrong + " wrong guesses left");
+				function(chosenword, correctletters, wrong);
 			}
-			System.out.println(correctletters);
-			System.out.println(9-wrong + " wrong guesses left");
-			function(chosenword, correctletters, wrong);
+			else {
+				wrong++;
+				System.out.println(correctletters);
+				System.out.println(9-wrong + " wrong guesses left");
+				function(chosenword, correctletters, wrong);
+			}
 		}
 		else {
 			wrong++;
 			System.out.println(correctletters);
-			System.out.println(9-wrong + " wrong guesses left");
+			System.out.println(9-wrong+1 + " wrong guesses left");
 			function(chosenword, correctletters, wrong);
 		}
 	}	
