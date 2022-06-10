@@ -14,8 +14,12 @@ public class D2 {
 		for (int y=0; y<chosenword.length(); y++) {
 			correctletters = correctletters + "_ ";
 		}
-		function(chosenword, correctletters, wrong);		
+		function(chosenword, correctletters, wrong);
+		if (chosenword.equals("pneumonoultramicroscopicsilicovolcanoconiosis")) {
+			System.out.println("https://www.youtube.com/watch?v=vSEmlNNFE_0");
+	};
 	}
+
 
 static void function(String chosenword, String correctletters, int wrong) {
 	final Scanner inputread = new Scanner(System.in);
