@@ -1,12 +1,11 @@
 import java.util.Scanner;
 public class D2 {
-
 	public static void main(String[] args) {
 		String chosenword = "";
 		String[] words = {"nanny", "headphones", "background", "computer", "submarine", "coincide",
 				"cinema", "deep", "coffee", "ample", "coma", "trust", "vulcano",				
 				"leak", "slippery", "dimension", "pavement", "mark", "slab", "layout",
-				 "Pneumonoultramicroscopicsilicovolcanoconiosis", "stall", "nun",
+				 "pneumonoultramicroscopicsilicovolcanoconiosis", "stall", "nun",
 				 "veteran", "lamp", "mosaic", "opera", "obese", "drink", "suggest"};
 		String correctletters = "";
 		int wrong = 0;
@@ -17,7 +16,6 @@ public class D2 {
 		}
 		function(chosenword, correctletters, wrong);		
 	}
-
 
 static void function(String chosenword, String correctletters, int wrong) {
 	final Scanner inputread = new Scanner(System.in);
@@ -30,6 +28,7 @@ static void function(String chosenword, String correctletters, int wrong) {
 	}
 	else if(wrong == 9){
 		System.out.println("you've lost");
+		System.out.println("the word was "+chosenword);
 		inputread.close();
 	}
 	else {
@@ -45,7 +44,7 @@ static void function(String chosenword, String correctletters, int wrong) {
 				}
 				System.out.println(correctletters);
 				if (correctletters.contains("_")) {
-					System.out.println(9-wrong+1 + " wrong guesses left");
+					System.out.println(10-wrong + " wrong guesses left");
 					function(chosenword, correctletters, wrong);
 				}
 				else {
@@ -56,14 +55,14 @@ static void function(String chosenword, String correctletters, int wrong) {
 			else {
 				wrong++;
 				System.out.println(correctletters);
-				System.out.println(9-wrong+1 + " wrong guesses left");
+				System.out.println(10-wrong + " wrong guesses left");
 				function(chosenword, correctletters, wrong);
 			}
 		}
 		else {
 			wrong++;
 			System.out.println(correctletters);
-			System.out.println(9-wrong+1 + " wrong guesses left");
+			System.out.println(10-wrong + " wrong guesses left");
 			function(chosenword, correctletters, wrong);
 		}
 	}	
