@@ -9,7 +9,7 @@ public class D2 {
 				"leak", "slippery", "dimension", "pavement", "lend", "mark", "slab", "stall"};
 		String correctletters = "";
 		int wrong = 0;
-		int n = (int) (Math.random() * 5);
+		int n = (int) (Math.random() * 29);
 		chosenword = words[n];
 		for (int y=0; y<chosenword.length(); y++) {
 			correctletters = correctletters + "_ ";
