@@ -11,3 +11,9 @@ function chooseWord(){
     let correctLetters += "_ ";
   }
 }
+
+function check(){
+  if (input.equals(chosenword) || !correctletters.contains("_")){
+    document.write("correct guess");
+  }
+}
