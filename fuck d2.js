@@ -14,6 +14,6 @@ function chooseWord(){
 
 function check(){
   if (input.equals(chosenword) || !correctletters.contains("_")){
-    document.write("correct guess");
+    document.write("correct guess"\n);
   }
 }
