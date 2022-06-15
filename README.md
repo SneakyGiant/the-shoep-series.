@@ -18,3 +18,4 @@ The test will begin on the word start.
 On your mark, get ready, start.
 
 also we started in java but fuck java and we went to cpp
+then we realised js would be easier than cpp
