@@ -1,10 +1,11 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.awt.*;
+import java.awt.FlowLayout;
     public class D2 {  
     	public static String correctletters = "";
     	public static String chosenword = "";
+    	public static String list = "";
     public static void main(String[] args) { 
 		ArrayList<String> wrongletters = new ArrayList<String>();
 		String[] words = {"nanny", "headphones", "background", "computer", "submarine", "coincide",
@@ -18,33 +19,32 @@ import java.awt.*;
 		for (int y=0; y<chosenword.length(); y++) {
 			correctletters = correctletters + "_ ";
 		}
+	JFrame.setDefaultLookAndFeelDecorated(true);
     JFrame frame=new JFrame();
-    JPanel textpanel1 = new JPanel(new BorderLayout());
-    JPanel buttonpanel = new JPanel(new BorderLayout());
-    JPanel textpanel2 = new JPanel(new BorderLayout());
-    frame.add(textpanel1, BorderLayout.NORTH);
-    frame.add(buttonpanel, BorderLayout.CENTER);
-    frame.add(textpanel2, BorderLayout.SOUTH);
+
+    JPanel panel = new JPanel();
+    panel.setLayout(new FlowLayout());
     JTextField top_text = new JTextField("a", 20);         
     JButton buton=new JButton("click");
     buton.setBounds(130,100,100, 40);
     
-    JTextField wg = new JTextField(20);
-    JTextField wl = new JTextField(20);
+    JTextField wg = new JTextField(String.valueOf(wrong),20);
+    JTextField wl = new JTextField(list, 20);
     JTextField output = new JTextField(correctletters,20);
     
     buton.addActionListener(new ActionListener(){
     	public void actionPerformed(ActionEvent e) {
+    		list = String.join(", ", wrongletters);
     		String input = top_text.getText();   		
     		function(output, wl, wg ,input, chosenword, correctletters, wrong, wrongletters);
     	}
     });
-    textpanel1.add(top_text);
-    buttonpanel.add(buton);
-    textpanel2.add(wg);
-    textpanel2.add(wl);
-    textpanel2.add(output);
-   
+    panel.add(top_text);
+    panel.add(buton);
+    panel.add(wg);
+    panel.add(wl);
+    panel.add(output);
+    frame.add(panel);
     frame.pack();
     frame.setTitle("Shoup 2 electric boogaloo");          
  	frame.setSize(420,420); 
@@ -105,4 +105,4 @@ import java.awt.*;
     		System.out.println(wrong);
     	}
     }
-    }
+   
