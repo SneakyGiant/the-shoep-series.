@@ -19,49 +19,33 @@ import javax.swing.*;
 		for (int y=0; y<chosenword.length(); y++) {
 			correctletters = correctletters + "_ ";
 		}
-	GridBagLayout layout = new GridBagLayout();
 	JFrame.setDefaultLookAndFeelDecorated(true);
     JFrame frame=new JFrame();
 
     JPanel panel = new JPanel();
-    panel.setLayout(new GridBagLayout());
-    GridBagConstraints gbc = new GridBagConstraints();
-    
+    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+    JPanel panel1 = new JPanel();
+    JPanel panel2 = new JPanel();
+    JPanel panel3 = new JPanel();
+    JPanel panel4 = new JPanel();
+    JPanel panel5 = new JPanel();
+
     JTextField top_text = new JTextField(20);
-    gbc.gridx = 0;
-    gbc.gridy = 0;
-    gbc.fill = GridBagConstraints.VERTICAL;
-    layout.setConstraints(top_text, gbc);
-    
     JButton buton=new JButton("check");
     buton.setSize(250, 20);
-    gbc.gridx = 0;
-    gbc.gridy = 1;
-    layout.setConstraints(buton, gbc);
-    
     JButton nieuw = new JButton("new game");
     nieuw.setSize(250, 20);
-    gbc.gridx = 1;
-    gbc.gridy = 1;  
-    layout.setConstraints(nieuw, gbc);
-    
+    nieuw.setEnabled(false);
     JTextField wg = new JTextField(String.valueOf(wrong),20);
-    gbc.gridx = 0;
-    gbc.gridy = 2;
-    layout.setConstraints(wg, gbc);
-    
     JTextField wl = new JTextField(list, 20);
-    gbc.gridx = 0;
-    gbc.gridy = 3;
-    layout.setConstraints(wl, gbc);
-    
     JTextField output = new JTextField(correctletters);
-    gbc.gridx = 0;
-    gbc.gridy = 4; 
-    layout.setConstraints(output, gbc);
-    
+    wg.setText(10-wrong + " wrong guesses left");
+	wl.setText("wrong guesses "+wrongletters);
     nieuw.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
+    		frame.dispose();
+    		correctletters = "";
+    		wrongletters.removeAll(wrongletters);   		
     		D2.main(null);
     	}
     });
@@ -70,30 +54,39 @@ import javax.swing.*;
     		list = String.join(", ", wrongletters);
     		String input = top_text.getText(); 
     		
-    		function(output, wl, wg ,input, chosenword, correctletters, wrong, wrongletters);
+    		function(nieuw, output, wl, wg ,input, chosenword, correctletters, wrong, wrongletters);
     		
     	}
     });
-    panel.add(top_text);
-    panel.add(nieuw);
-    panel.add(buton);
-    panel.add(wg);
-    panel.add(wl);
-    panel.add(output);
-    frame.add(panel);
+    panel1.add(top_text);
+    panel2.add(nieuw);
+    panel2.add(buton);
+    panel3.add(wg);
+    panel4.add(wl);
+    panel5.add(output);
+    panel.add(panel1);
+    panel.add(panel2);
+    panel.add(panel3);
+    panel.add(panel4);
+    panel.add(panel5);
+    frame.add(panel, BorderLayout.CENTER);
     frame.pack();
     frame.setTitle("Shoup 2 electric boogaloo");          
- 	frame.setSize(420,420); 
+ 	frame.setSize(420,420);
+ 	frame.setResizable(true);
     frame.setLayout(null);
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     }  
-    static void function(JTextField output, JTextField wl, JTextField wg, String input, String chosenword, String correctletters, int wrong, ArrayList<String> wrongletters) {
+    static void function(JButton nieuw, JTextField output, JTextField wl, JTextField wg, String input, String chosenword, String correctletters, int wrong, ArrayList<String> wrongletters) {
     	wrong = wrongletters.size();
+    	
     	if (input.equals(chosenword) || !correctletters.contains("_")) {
     		wg.setText("correct guess");
 			wl.setText("");
+			output.setText(input);
+			nieuw.setEnabled(true);
     	}
     	else if(wrong == 9){
     		wg.setText("you've lost");
@@ -111,12 +104,10 @@ import javax.swing.*;
     				     i = chosenword.indexOf(input, i+1);
     				}
     				output.setText(correctletters);
-    				if (correctletters.contains("_")) {
-    					
+    				if (correctletters.contains("_")) {   					
     					wg.setText(10-wrong + " wrong guesses left");
     					wl.setText("wrong guesses "+wrongletters);
     					output.setText(correctletters);
-
     				}
     				else {
     					wg.setText("correct guess");
@@ -125,16 +116,14 @@ import javax.swing.*;
     				}
     			}
     			else {
-    				wrongletters.add(input);
-    							
+    				wrongletters.add(input);    							
     				wg.setText(10-wrong + " wrong guesses left");
     				wl.setText("wrong guesses "+wrongletters);
     				output.setText(correctletters);
     			}
     		}
     		else {
-    			wrongletters.add(input);
-    					
+    			wrongletters.add(input);    					
     			wg.setText(10-wrong + " wrong guesses left");
     			wl.setText("wrong guesses "+wrongletters);
     			output.setText(correctletters);
