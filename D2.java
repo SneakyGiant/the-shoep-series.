@@ -64,11 +64,13 @@ import javax.swing.*;
     panel3.add(wg);
     panel4.add(wl);
     panel5.add(output);
+    
     panel.add(panel1);
     panel.add(panel2);
     panel.add(panel3);
     panel.add(panel4);
     panel.add(panel5);
+    
     frame.add(panel, BorderLayout.CENTER);
     frame.pack();
     frame.setTitle("Shoup 2 electric boogaloo");          
@@ -88,9 +90,10 @@ import javax.swing.*;
 			output.setText(input);
 			nieuw.setEnabled(true);
     	}
-    	else if(wrong == 9){
+    	else if(wrong == 10){
     		wg.setText("you've lost");
     		wl.setText("the word was "+chosenword);
+    		nieuw.setEnabled(true);
     	}
     	else {
     		if(input.length()==1) {
