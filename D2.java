@@ -24,11 +24,7 @@ import javax.swing.*;
 
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-    JPanel panel1 = new JPanel();
-    JPanel panel2 = new JPanel();
-    JPanel panel3 = new JPanel();
-    JPanel panel4 = new JPanel();
-    JPanel panel5 = new JPanel();
+    JPanel buttonpanel = new JPanel();
 
     JTextField top_text = new JTextField(20);
     JButton buton=new JButton("check");
@@ -41,35 +37,37 @@ import javax.swing.*;
     JTextField output = new JTextField(correctletters);
     wg.setText(10-wrong + " wrong guesses left");
 	wl.setText("wrong guesses "+wrongletters);
+	
     nieuw.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
-    		frame.dispose();
-    		correctletters = "";
-    		wrongletters.removeAll(wrongletters);   		
-    		D2.main(null);
+    		correct_guess(frame, wrongletters, top_text);
     	}
     });
     buton.addActionListener(new ActionListener(){
     	public void actionPerformed(ActionEvent e) {
-    		list = String.join(", ", wrongletters);
-    		String input = top_text.getText(); 
-    		
-    		function(nieuw, output, wl, wg ,input, chosenword, correctletters, wrong, wrongletters);
-    		
+    		guess(nieuw, output, wl, wg, chosenword, correctletters, wrong, wrongletters, top_text);
     	}
     });
-    panel1.add(top_text);
-    panel2.add(nieuw);
-    panel2.add(buton);
-    panel3.add(wg);
-    panel4.add(wl);
-    panel5.add(output);
+    top_text.addKeyListener(new KeyAdapter() {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            
+            if (e.getKeyCode() == KeyEvent.VK_ENTER && output.getText().equals(chosenword)){           	
+            	correct_guess(frame, wrongletters, top_text);
+            }
+            else if(e.getKeyCode() == KeyEvent.VK_ENTER && top_text.getText() != null && wg.getText() != "correct guess"){           	
+            	guess(nieuw, output, wl, wg, chosenword, correctletters, wrong, wrongletters, top_text);
+            }
+        }
+    });
+    buttonpanel.add(nieuw);
+    buttonpanel.add(buton);
     
-    panel.add(panel1);
-    panel.add(panel2);
-    panel.add(panel3);
-    panel.add(panel4);
-    panel.add(panel5);
+    panel.add(top_text);
+    panel.add(buttonpanel);
+    panel.add(wg);
+    panel.add(wl);
+    panel.add(output);
     
     frame.add(panel, BorderLayout.CENTER);
     frame.pack();
@@ -80,7 +78,20 @@ import javax.swing.*;
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
-    }  
+    }
+    static void guess(JButton nieuw, JTextField output, JTextField wl, JTextField wg, String chosenword, String correctletters, int wrong, ArrayList<String> wrongletters, JTextField top_text) {
+    	list = String.join(", ", wrongletters);
+		String input = top_text.getText();        		
+		function(nieuw, output, wl, wg ,input, chosenword, correctletters, wrong, wrongletters);
+		top_text.setText("");
+    }
+    static void correct_guess(JFrame frame, ArrayList<String> wrongletters, JTextField top_text) {
+    	frame.dispose();
+		correctletters = "";
+		wrongletters.removeAll(wrongletters);   		
+		D2.main(null);
+		top_text.setText("");
+    }
     static void function(JButton nieuw, JTextField output, JTextField wl, JTextField wg, String input, String chosenword, String correctletters, int wrong, ArrayList<String> wrongletters) {
     	wrong = wrongletters.size();
     	
@@ -134,4 +145,4 @@ import javax.swing.*;
     	}
     	D2.correctletters = correctletters;
     }
-    }
+    
