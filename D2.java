@@ -40,7 +40,7 @@ import javax.swing.*;
 	
     nieuw.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
-    		correct_guess(frame, wrongletters, top_text);
+    		correct_guess(correctletters, frame, wrongletters, top_text);
     	}
     });
     buton.addActionListener(new ActionListener(){
@@ -53,7 +53,7 @@ import javax.swing.*;
         public void keyPressed(KeyEvent e) {
             
             if (e.getKeyCode() == KeyEvent.VK_ENTER && output.getText().equals(chosenword)){           	
-            	correct_guess(frame, wrongletters, top_text);
+            	correct_guess(correctletters, frame, wrongletters, top_text);
             }
             else if(e.getKeyCode() == KeyEvent.VK_ENTER && top_text.getText() != null && wg.getText() != "correct guess"){           	
             	guess(nieuw, output, wl, wg, chosenword, correctletters, wrong, wrongletters, top_text);
@@ -85,7 +85,7 @@ import javax.swing.*;
 		function(nieuw, output, wl, wg ,input, chosenword, correctletters, wrong, wrongletters);
 		top_text.setText("");
     }
-    static void correct_guess(JFrame frame, ArrayList<String> wrongletters, JTextField top_text) {
+    static void correct_guess(String correctletters, JFrame frame, ArrayList<String> wrongletters, JTextField top_text) {
     	frame.dispose();
 		correctletters = "";
 		wrongletters.removeAll(wrongletters);   		
@@ -101,12 +101,7 @@ import javax.swing.*;
 			output.setText(input);
 			nieuw.setEnabled(true);
     	}
-    	else if(wrong == 10){
-    		wg.setText("you've lost");
-    		wl.setText("the word was "+chosenword);
-    		nieuw.setEnabled(true);
-    	}
-    	else {
+    	else if(wrong <= 10){
     		if(input.length()==1) {
     			if(chosenword.contains(input)) {
     				int i = chosenword.indexOf(input);
@@ -143,6 +138,11 @@ import javax.swing.*;
     			output.setText(correctletters);
     		}
     	}
+    	else{
+    		wg.setText("you've lost");
+    		wl.setText("the word was "+chosenword);
+    		nieuw.setEnabled(true);
+    	}
     	D2.correctletters = correctletters;
     }
-    
+    }
