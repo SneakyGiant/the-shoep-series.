@@ -6,6 +6,7 @@ import javax.swing.*;
     	public static String correctletters = "";
     	public static String chosenword = "";
     	public static String list = "";
+    	public static String split = "";
     public static void main(String[] args) { 
 		ArrayList<String> wrongletters = new ArrayList<String>();
 		String[] words = {"nanny", "headphones", "background", "computer", "submarine", "coincide",
@@ -19,6 +20,9 @@ import javax.swing.*;
 		for (int y=0; y<chosenword.length(); y++) {
 			correctletters = correctletters + "_ ";
 		}
+		for (int i = 0;i < chosenword.length(); i++){
+		    split = split + chosenword.charAt(i)+" ";
+		}
 	JFrame.setDefaultLookAndFeelDecorated(true);
     JFrame frame=new JFrame();
 
@@ -31,7 +35,6 @@ import javax.swing.*;
     buton.setSize(250, 20);
     JButton nieuw = new JButton("new game");
     nieuw.setSize(250, 20);
-    nieuw.setEnabled(false);
     JTextField wg = new JTextField(String.valueOf(wrong),20);
     JTextField wl = new JTextField(list, 20);
     JTextField output = new JTextField(correctletters);
@@ -40,7 +43,7 @@ import javax.swing.*;
 	
     nieuw.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
-    		correct_guess(correctletters, frame, wrongletters, top_text);
+    		correct_guess(correctletters, frame, wrongletters, top_text, nieuw);
     	}
     });
     buton.addActionListener(new ActionListener(){
@@ -51,11 +54,7 @@ import javax.swing.*;
     top_text.addKeyListener(new KeyAdapter() {
         @Override
         public void keyPressed(KeyEvent e) {
-            
-            if (e.getKeyCode() == KeyEvent.VK_ENTER && output.getText().equals(chosenword)){           	
-            	correct_guess(correctletters, frame, wrongletters, top_text);
-            }
-            else if(e.getKeyCode() == KeyEvent.VK_ENTER && top_text.getText() != null && wg.getText() != "correct guess"){           	
+             if(e.getKeyCode() == KeyEvent.VK_ENTER && wg.getText() != "correct guess"){           	
             	guess(nieuw, output, wl, wg, chosenword, correctletters, wrong, wrongletters, top_text);
             }
         }
@@ -85,12 +84,13 @@ import javax.swing.*;
 		function(nieuw, output, wl, wg ,input, chosenword, correctletters, wrong, wrongletters);
 		top_text.setText("");
     }
-    static void correct_guess(String correctletters, JFrame frame, ArrayList<String> wrongletters, JTextField top_text) {
+    static void correct_guess(String correctletters, JFrame frame, ArrayList<String> wrongletters, JTextField top_text, JButton nieuw) {
     	frame.dispose();
-		correctletters = "";
-		wrongletters.removeAll(wrongletters);   		
-		D2.main(null);
+		D2.correctletters = "";
+		wrongletters.removeAll(wrongletters);  
 		top_text.setText("");
+		D2.main(null);
+		
     }
     static void function(JButton nieuw, JTextField output, JTextField wl, JTextField wg, String input, String chosenword, String correctletters, int wrong, ArrayList<String> wrongletters) {
     	wrong = wrongletters.size();
