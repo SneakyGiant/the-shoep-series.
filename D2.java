@@ -2,12 +2,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
-    public class D2 {  
+    public class D2 {
     	public static String correctletters = "";
     	public static String chosenword = "";
     	public static String list = "";
     	public static String split = "";
     public static void main(String[] args) { 
+	    // hier maken we een arraylist voor de fout geraadde letters zodat we die makkelijk kunnen selecteren en opslaan
 		ArrayList<String> wrongletters = new ArrayList<String>();
 		String[] words = {"nanny", "headphones", "background", "computer", "submarine", "coincide",
 				"cinema", "deep", "coffee", "ample", "coma", "trust", "vulcano",				
@@ -15,21 +16,24 @@ import javax.swing.*;
 				 "pneumonoultramicroscopicsilicovolcanoconiosis", "stall", "nun",
 				 "veteran", "lamp", "mosaic", "opera", "obese", "drink", "suggest"};
 		int wrong = 0;
+	    // het woord word hier gekozen uit de arraylist met math.random
 		int n = (int) (Math.random() * 29);
 		chosenword = words[n];
 		for (int y=0; y<chosenword.length(); y++) {
 			correctletters = correctletters + "_ ";
 		}
+	    // hier splitten we het woord in een array van losse letters
 		for (int i = 0;i < chosenword.length(); i++){
 		    split = split + chosenword.charAt(i)+" ";
 		}
+	    //dit is de frame waarhet spel word afgespeelt
 	JFrame.setDefaultLookAndFeelDecorated(true);
     JFrame frame=new JFrame();
 
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     JPanel buttonpanel = new JPanel();
-
+	//hier kunne we letters of het woord raden
     JTextField top_text = new JTextField(20);
     JButton buton=new JButton("check");
     buton.setSize(250, 20);
@@ -42,8 +46,13 @@ import javax.swing.*;
 	wl.setText("wrong guesses "+wrongletters);
 	
     nieuw.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-    		correct_guess(correctletters, frame, wrongletters, top_text, nieuw);
+	    // hier word de knop new game gemaakt daarmee kun je ten alle tijden de game resetten
+    	public void actionPerformed(ActionEvent e) {	    
+    	frame.dispose();
+		D2.correctletters = "";
+		wrongletters.removeAll(wrongletters);  
+		top_text.setText("");
+		D2.main(null);
     	}
     });
     buton.addActionListener(new ActionListener(){
@@ -78,30 +87,25 @@ import javax.swing.*;
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     }
+	    //hier controllerd hij de letter die je invoert bij het textfield of hij goed of fout is
     static void guess(JButton nieuw, JTextField output, JTextField wl, JTextField wg, String chosenword, String correctletters, int wrong, ArrayList<String> wrongletters, JTextField top_text) {
     	list = String.join(", ", wrongletters);
 		String input = top_text.getText();        		
 		function(nieuw, output, wl, wg ,input, chosenword, correctletters, wrong, wrongletters);
 		top_text.setText("");
     }
-    static void correct_guess(String correctletters, JFrame frame, ArrayList<String> wrongletters, JTextField top_text, JButton nieuw) {
-    	frame.dispose();
-		D2.correctletters = "";
-		wrongletters.removeAll(wrongletters);  
-		top_text.setText("");
-		D2.main(null);
 		
-    }
     static void function(JButton nieuw, JTextField output, JTextField wl, JTextField wg, String input, String chosenword, String correctletters, int wrong, ArrayList<String> wrongletters) {
     	wrong = wrongletters.size();
-    	
+    	//als de input overeenkomt met het gekozen woord of letter dan komt hij hieer te staan op de stippellijntjes
     	if (input.equals(chosenword) || !correctletters.contains("_")) {
     		wg.setText("correct guess");
 			wl.setText("");
 			output.setText(input);
 			nieuw.setEnabled(true);
     	}
-    	else if(wrong <= 10){
+		//als het fout is kom hij in een aparte box te staan en gaat het aantal keer raden naar beneden
+	    else if(wrong <= 10){
     		if(input.length()==1) {
     			if(chosenword.contains(input)) {
     				int i = chosenword.indexOf(input);
